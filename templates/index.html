@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SQL Query Generator</title>
+</head>
+<body>
+  <h1>Natural Language → SQL Query Generator</h1>
+  <input type="text" id="nl_query" size="60" placeholder="e.g., Show top 10 highest rated products">
+  <button onclick="generate()">Generate SQL</button>
+  <pre id="result" style="margin-top:20px;"></pre>
+
+  <script>
+    async function generate() {
+      const query = document.getElementById('nl_query').value;
+      const res = await fetch('/generate_query', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ natural_language: query })
+      });
+      const data = await res.json();
+      document.getElementById('result').innerText = data.query;
+    }
+  </script>
+</body>
+</html>

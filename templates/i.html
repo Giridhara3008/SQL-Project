@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SQL Query Generator</title>
+</head>
+<body>
+  <h1>Natural Language → SQL Query Generator</h1>
+
+  <input type="text" id="nl_query" size="60" placeholder="e.g., Show top 10 highest rated products">
+  <button onclick="generate()">Generate SQL</button>
+
+  <h3>Generated SQL Query:</h3>
+  <pre id="query_output" style="background-color:#f0f0f0; padding:10px;"></pre>
+
+  <h3>Query Results:</h3>
+  <pre id="results_output" style="background-color:#f9f9f9; padding:10px;"></pre>
+
+  <script>
+    async function generate() {
+      const query = document.getElementById('nl_query').value;
+
+      const res = await fetch('/generate_query', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ natural_language: query })
+      });
+
+      const data = await res.json();
+
+      // Show SQL query
+      document.getElementById('query_output').innerText = data.query || "No query returned.";
+
+      // Show results if available
+      if (data.results && data.results.length > 0) {
+        document.getElementById('results_output').innerText = JSON.stringify(data.results, null, 2);
+      } else if (data.error) {
+        document.getElementById('results_output').innerText = "Error: " + data.error;
+      } else {
+        document.getElementById('results_output').innerText = "No results found.";
+      }
+    }
+  </script>
+</body>
+</html>
