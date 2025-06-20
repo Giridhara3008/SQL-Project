@@ -23,6 +23,8 @@ database/ # Folder containing SQLite .db file
 data/ # Optional CSVs for table import
 templates/ # HTML templates (if UI included)
 README.md
+## Steps to do the project
+Install all requirements.txt and set up python virtual environment using venv. Built all required codes in app.py and run in the localhost.
 
 ##  How It Works
 
@@ -36,6 +38,9 @@ README.md
 ### 1. Clone the Repository
 git clone https://github.com/yourusername/nl2sql-generator.git
 cd nl2sql-generator
+
+# For running use the link
+http://127.0.0.1:5000
 
 ## Conclusion
 The NL2SQL Generator bridges the gap between non-technical users and databases by allowing natural language queries to be translated into SQL seamlessly. Whether you're analyzing customer data, tracking purchases, or exploring playlists, this tool empowers users to access insights without writing a single line of SQL.
