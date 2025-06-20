@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify,render_template
 import openai
 
 app = Flask(__name__)
-openai.api_key = "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"
+openai.api_key = " kep your own key"
 @app.route('/')
 def home():
     return render_template("i.html")
